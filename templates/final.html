@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Fashion Redefined with Virtual Grooming & Shopping Assistant</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Style the body */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+/* Header/logo Title */
+.header {
+  padding: 100px;
+  text-align: center;
+  background-color: #1abc9c;
+  color: hsl(340deg 100% 32%);
+  background-repeat:repeat;
+  background-size:100% 100%;
+  animation: mymove 5s infinite;
+  
+}
+@keyframes mymove{
+   50% {background-size:200px 300px;}}
+
+/* Increase the font size of the heading */
+.header h1 {
+  font-size: 40px;
+}
+
+/* Style the top navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color:  hsl(340deg 100% 32%);
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left;
+  display: block;
+  color: White;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+/* Right-aligned link */
+.navbar a.right {
+  float: right;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #1abc9c;
+  color: hsl(340deg 100% 32%);
+}
+
+/* Column container */
+.row {  
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  -ms-flex: 30%; /* IE10 */
+  flex: 30%;
+  background-color: White ;
+  padding: 20px;
+}
+
+/* Main column */
+.main {   
+  -ms-flex: 70%; /* IE10 */
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+/* Fake image, just for this example */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background-color: #1abc9c;
+  color: hsl(340deg 100% 32%);
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Fashion Redefined with Virtual Grooming & Shopping Assistant</h1>
+
+</div>
+
+<div class="navbar">
+  <a href="#A" class="active">Home</a>
+  <a href="#B">About Us</a>
+  <a href="#C">Chech Fashion Availability</a>
+  
+  <a href="#D" class="right">Fasion Guider Contact</a>
+</div>
+
+<div class="row">
+          <div class="main">
+            <center><h1 id= "B"><font color="#1abc9c" size="20%"align="center">About us</font></h1>
+			<b><p align="center">We are Fashion Redefined with Virtual Grooming & Shopping Assistant.We are providing the services of fashion guidance.<br>
+			In our website contains the vitual search , you can check the availability of apparels using of image search.<br>
+			Fashion Guider chatbot helps to recommmend the fashion tips , trends and gives the fashion advices.<br></p>
+			</b>
+			
+			</center>
+			</div>
+			
+  <div class="main">
+     <center>  <h1 id="C"><font color="#1abc9c" size="20%">Chech Fashion Availability</font></h1>
+            <form method="POST" enctype="multipart/form-data">
+                <input type="file" name="query_img"><br><br><br>
+                <input type="submit" style="background-color:hsl(340deg 100% 32%);color:white;width:150px;height:40px;"value="Check Availability"></font>
+            </form>
+            <h2><font color="#1abc9c" size="6%">Search Image</font></h2>
+            {% if query_path %}
+            <img src="{{ query_path }}" width="300px">
+            {% endif %}
+            <h2> <font color="#C21E56" size="6%">Availability of Apparels</font></h2>
+            {% for score in scores %}
+            <figure style="float: left; margin-right: 20px; margin-bottom: 20px;">
+                <img src="{{ score[1] }}" height="200px">
+                <figcaption>{{ score[0] }}</figcaption>
+            </figure>
+            {% endfor %}
+   </center>
+  </div>
+ 
+</div>
+<script>
+  window.watsonAssistantChatOptions = {
+      integrationID: "19aef597-a34c-4bfd-83ef-b6b39c5c7967", // The ID of this integration.
+      region: "eu-gb", // The region your integration is hosted in.
+      serviceInstanceID: "5330d41f-0f0c-43c7-8467-0a4922ee31c8", // The ID of your service instance.
+      onLoad: function(instance) { instance.render(); }
+    };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+    document.head.appendChild(t);
+  });
+</script>
+
+<div class="footer">
+  <h2 id="D"> Fasion Guider Contact</h2><br>
+  Created by Swarnamythili Ramakrishnan<br>
+ <b> <p> Mobile Number:+91 8665765265<br>Whatsapp Number:+91 7875657576<br>Email Id: fashion@gmail.com<br></p></b>
+</div>
+
+</body>
+</html>
